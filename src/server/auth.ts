@@ -69,6 +69,7 @@ export const authOptions: NextAuthOptions = {
       clientSecret: env.GOOGLE_SECRET || "",
     }),
   ],
+  secret: env.NEXTAUTH_SECRET,
 };
 
 /**
