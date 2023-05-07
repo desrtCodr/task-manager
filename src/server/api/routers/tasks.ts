@@ -19,17 +19,17 @@ export const taskRouter = createTRPCRouter({
   create: protectedProcedure
     .input(
       z.object({
-        name: z.string(),
+        taskName: z.string(),
         projectId: z.string(),
       })
     )
     .mutation(async ({ ctx, input }) => {
-      const assigneeId = ctx.session.user.id;
+      const userId = ctx.session.user.id;
       const projectId = input.projectId;
       const task = await ctx.prisma.task.create({
         data: {
-          name: input.name,
-          assigneeId,
+          taskName: input.taskName,
+          userId,
           projectId,
         },
       });
