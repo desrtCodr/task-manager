@@ -6,6 +6,9 @@ const TasksCard = (props: { projectId: string }) => {
   const { projectId } = props;
   //step up state for new task from input
   const [newTask, setNewTask] = React.useState("");
+  //step up state for editing task name
+  const [taskName, setTaskName] = React.useState("");
+  const [editTaskName, setEditTaskName] = React.useState(false);
   //get existing tasks from api
   const { data: tasks, isLoading: taskUpdating } = api.tasks.getAll.useQuery({
     projectId,
@@ -19,7 +22,11 @@ const TasksCard = (props: { projectId: string }) => {
       void ctx.tasks.getAll.invalidate({ projectId });
     },
   });
-
+  const { mutate: updateTaskName } = api.tasks.update.useMutation({
+    onSuccess: () => {
+      void ctx.tasks.getAll.invalidate({ projectId });
+    },
+  });
   const { mutate: deleteTask } = api.tasks.delete.useMutation({
     onSuccess: () => {
       void ctx.tasks.getAll.invalidate({ projectId });
@@ -38,8 +45,43 @@ const TasksCard = (props: { projectId: string }) => {
           <li key={task.id} className="">
             <div className="grid grid-cols-8 gap-1">
               <p className="col-span-1">{index + 1}</p>
-              <p className="col-span-6">{task.taskName}</p>
-              <button onClick={() => deleteTask({ id: task.id })}>
+              {!editTaskName ? (
+                <h2
+                  className="col-span-6 text-lg font-medium text-gray-900"
+                  onClick={() => {
+                    setEditTaskName(true);
+                  }}
+                >
+                  {task.taskName || "Edit task"}
+                </h2>
+              ) : (
+                <form
+                  className="col-span-6"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    updateTaskName({
+                      id: task.id,
+                      taskName: taskName,
+                    });
+                    setTaskName("Enter a project name");
+                    setEditTaskName(false);
+                  }}
+                  onBlur={() => setEditTaskName(false)}
+                >
+                  <input
+                    autoFocus
+                    className="border p-1"
+                    type="text"
+                    placeholder={task.taskName}
+                    value={taskName}
+                    onChange={(e) => setTaskName(e.target.value)}
+                  />
+                </form>
+              )}
+              <button
+                className="col-end-9"
+                onClick={() => deleteTask({ id: task.id })}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"

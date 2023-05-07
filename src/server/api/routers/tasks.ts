@@ -35,6 +35,22 @@ export const taskRouter = createTRPCRouter({
       });
       return task;
     }),
+  update: protectedProcedure
+    .input(
+      z.object({
+        id: z.string(),
+        taskName: z.string(),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      const task = await ctx.prisma.task.update({
+        where: { id: input.id },
+        data: {
+          taskName: input.taskName,
+        },
+      });
+      return task;
+    }),
   delete: protectedProcedure
     .input(
       z.object({
