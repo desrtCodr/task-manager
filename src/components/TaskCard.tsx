@@ -45,7 +45,7 @@ const TasksCard = (props: TasksCardProps) => {
   }
 
   return (
-    <div className="p-2">
+    <div className="p-1">
       <ul className="">
         {tasks.map((task, index) => (
           <li key={task.id} className="">
@@ -53,7 +53,7 @@ const TasksCard = (props: TasksCardProps) => {
               <p className="col-span-1">{index + 1}</p>
               {!editTaskName ? (
                 <h2
-                  className="col-span-6 flex gap-2 text-lg font-medium text-gray-900"
+                  className="text-wrap overflow-wrap w-250 col-span-6 flex gap-2 text-lg font-medium text-gray-900"
                   onClick={() => {
                     setEditTaskName(true);
                   }}
@@ -111,7 +111,7 @@ const TasksCard = (props: TasksCardProps) => {
         ))}
       </ul>
       <hr className="my-5" />
-      <div className="grid grid-cols-5 gap-4">
+      <div className="flex gap-2">
         <input
           className="col-span-3 border bg-slate-200 px-2 py-2"
           type="text"
@@ -122,7 +122,7 @@ const TasksCard = (props: TasksCardProps) => {
         />
 
         <button
-          className={`col-span-2 col-end-6 rounded-full border border-cyan-600 p-2 font-semibold ${
+          className={`col-span-2 col-end-6 w-[80px] rounded-lg border border-cyan-600 p-1 font-semibold ${
             category === "Short-Term"
               ? "text-gray-500"
               : "bg-slate-200 text-gray-900 hover:bg-gray-400"

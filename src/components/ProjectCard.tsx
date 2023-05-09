@@ -72,11 +72,11 @@ const ProjectCard = (props: ProjectCardProps) => {
   return (
     <div
       key={project.id}
-      className={`overflow-hidden rounded-lg ${
+      className={`rounded-lg ${
         project.category === "Short-Term"
           ? "bg-white/90 text-gray-500"
           : "bg-cyan-500/50 text-gray-900"
-      } shadow`}
+      }`}
     >
       <div className="px-4 py-5 sm:p-6">
         {!editCategory ? (
