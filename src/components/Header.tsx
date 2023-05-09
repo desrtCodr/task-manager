@@ -13,7 +13,7 @@ const Header = () => {
     },
   });
   return (
-    <header className="grid grid-cols-5 gap-10 bg-gray-200 shadow">
+    <header className="grid grid-cols-5 gap-10 shadow">
       <div className="ml-10 max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
         <h1 className="text-3xl font-bold text-gray-900">Task Manager</h1>
         <p className="mt-1 text-lg text-gray-500">Get Your Life Together</p>
@@ -27,7 +27,7 @@ const Header = () => {
           onChange={(e) => setNewProject(e.target.value)}
         />
         <button
-          className="rounded-full border border-cyan-600 px-5 py-3 font-semibold text-gray-500 no-underline transition hover:bg-white/50"
+          className="rounded-full border border-cyan-600 px-5 py-3 font-semibold text-gray-500 no-underline transition hover:bg-cyan-500/50"
           onClick={() => createProject({ name: newProject })}
         >
           Add Project
@@ -42,7 +42,7 @@ const Header = () => {
           )}
         </p>
         <button
-          className="float-right rounded-full border border-cyan-600 px-3 py-1 font-semibold text-gray-500 no-underline transition hover:bg-white/50"
+          className="float-right rounded-full border border-cyan-600 px-3 py-1 font-semibold text-gray-500 no-underline transition hover:bg-cyan-500/50"
           onClick={() => void signOut()}
         >
           Sign out

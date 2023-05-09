@@ -1,5 +1,5 @@
 import React from "react";
-import TaskView from "./TaskCard";
+import TaskCard from "./TaskCard";
 import { api } from "~/utils/api";
 import { type Project } from "@prisma/client";
 import { TbTrashX } from "react-icons/tb";
@@ -72,14 +72,15 @@ const ProjectCard = (props: ProjectCardProps) => {
   return (
     <div
       key={project.id}
-      className="overflow-hidden rounded-lg bg-white shadow"
+      className={`overflow-hidden rounded-lg ${
+        project.category === "Short-Term"
+          ? "bg-white/90 text-gray-500"
+          : "bg-cyan-500/50 text-gray-900"
+      } shadow`}
     >
       <div className="px-4 py-5 sm:p-6">
         {!editCategory ? (
-          <p
-            className="text-sm text-gray-500"
-            onClick={() => setEditCategory(true)}
-          >
+          <p className="text-sm" onClick={() => setEditCategory(true)}>
             Category: {project.category}
           </p>
         ) : (
@@ -153,7 +154,7 @@ const ProjectCard = (props: ProjectCardProps) => {
         </header>
         {!editDescription ? (
           <p
-            className="flex gap-2 text-sm text-gray-500"
+            className="flex gap-2 text-sm"
             title="Project Description"
             onClick={() => setEditDescription(true)}
           >
@@ -176,7 +177,7 @@ const ProjectCard = (props: ProjectCardProps) => {
             <input
               autoFocus
               type="text"
-              className="border p-1 text-sm text-gray-500"
+              className="border p-1 text-sm "
               placeholder={project.description || "Add Description"}
               value={description}
               onChange={(e) => {
@@ -185,7 +186,7 @@ const ProjectCard = (props: ProjectCardProps) => {
             />
           </form>
         )}
-        <TaskView projectId={project.id} />
+        <TaskCard projectId={project.id} category={project.category} />
       </div>
     </div>
   );

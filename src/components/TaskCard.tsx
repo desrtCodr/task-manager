@@ -2,9 +2,14 @@ import * as React from "react";
 import { api } from "~/utils/api";
 import { BsPencilSquare } from "react-icons/bs";
 
-const TasksCard = (props: { projectId: string }) => {
+type TasksCardProps = {
+  projectId: string;
+  category: string;
+};
+
+const TasksCard = (props: TasksCardProps) => {
   //get project id from props
-  const { projectId } = props;
+  const { projectId, category } = props;
   //step up state for new task from input
   const [newTask, setNewTask] = React.useState("");
   //step up state for editing task name
@@ -108,7 +113,7 @@ const TasksCard = (props: { projectId: string }) => {
       <hr className="my-5" />
       <div className="grid grid-cols-5 gap-4">
         <input
-          className="col-span-3 border px-2 py-2"
+          className="col-span-3 border bg-slate-200 px-2 py-2"
           type="text"
           placeholder="Enter New Task"
           value={newTask}
@@ -117,7 +122,11 @@ const TasksCard = (props: { projectId: string }) => {
         />
 
         <button
-          className="col-span-2 col-end-6 rounded-full border border-cyan-600 p-2 font-semibold text-gray-500 no-underline transition hover:bg-white/50"
+          className={`col-span-2 col-end-6 rounded-full border border-cyan-600 p-2 font-semibold ${
+            category === "Short-Term"
+              ? "text-gray-500"
+              : "bg-slate-200 text-gray-900 hover:bg-gray-400"
+          } no-underline transition hover:bg-cyan-500/50`}
           onClick={() => createTask({ taskName: newTask, projectId })}
         >
           Add Task
