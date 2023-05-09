@@ -1,11 +1,12 @@
 import React from "react";
 import type { NextPage } from "next";
 import { api } from "~/utils/api";
-import Header from "./Header";
-import ProjectView from "./ProjectCard";
+import Header from "../components/Header";
+import ProjectView from "../components/ProjectCard";
+import { useSession } from "next-auth/react";
 
 const TaskManager: NextPage = () => {
-  // state for editing project name, description
+  useSession({ required: true });
 
   const { data: currentProjects } = api.projects.getProjects.useQuery({
     category: "Short-Term",
@@ -13,6 +14,22 @@ const TaskManager: NextPage = () => {
   const { data: futureProjects } = api.projects.getProjects.useQuery({
     category: "Long-Term",
   });
+
+  if (!currentProjects || !futureProjects) {
+    return (
+      <div className="flex h-screen w-screen items-center justify-center gap-3">
+        <strong>Getting those projects...</strong>
+        <div
+          className="h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+          role="status"
+        >
+          <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
+            Loading...
+          </span>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>

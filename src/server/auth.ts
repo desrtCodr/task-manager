@@ -49,6 +49,14 @@ export const authOptions: NextAuthOptions = {
   },
   adapter: PrismaAdapter(prisma),
   providers: [
+    GithubProvider({
+      clientId: env.GITHUB_ID || "",
+      clientSecret: env.GITHUB_SECRET || "",
+    }),
+    GoogleProvider({
+      clientId: env.GOOGLE_ID || "",
+      clientSecret: env.GOOGLE_SECRET || "",
+    }),
     EmailProvider({
       server: {
         host: process.env.EMAIL_SERVER_HOST,
@@ -59,14 +67,6 @@ export const authOptions: NextAuthOptions = {
         },
       },
       from: process.env.EMAIL_FROM,
-    }),
-    GithubProvider({
-      clientId: env.GITHUB_ID || "",
-      clientSecret: env.GITHUB_SECRET || "",
-    }),
-    GoogleProvider({
-      clientId: env.GOOGLE_ID || "",
-      clientSecret: env.GOOGLE_SECRET || "",
     }),
   ],
   secret: env.NEXTAUTH_SECRET,

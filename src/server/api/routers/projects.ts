@@ -11,11 +11,15 @@ export const projectRouter = createTRPCRouter({
     )
     .query(async ({ ctx, input }) => {
       const userId = ctx.session.user.id;
-      const category = input.category;
+
+      const { category } = input;
       const findProjects = await ctx.prisma.project.findMany({
         where: {
           userId,
           category,
+        },
+        orderBy: {
+          createdAt: "desc",
         },
       });
       return findProjects;

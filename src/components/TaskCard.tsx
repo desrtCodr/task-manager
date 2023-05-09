@@ -1,5 +1,6 @@
 import * as React from "react";
 import { api } from "~/utils/api";
+import { BsPencilSquare } from "react-icons/bs";
 
 const TasksCard = (props: { projectId: string }) => {
   //get project id from props
@@ -47,12 +48,15 @@ const TasksCard = (props: { projectId: string }) => {
               <p className="col-span-1">{index + 1}</p>
               {!editTaskName ? (
                 <h2
-                  className="col-span-6 text-lg font-medium text-gray-900"
+                  className="col-span-6 flex gap-2 text-lg font-medium text-gray-900"
                   onClick={() => {
                     setEditTaskName(true);
                   }}
                 >
                   {task.taskName || "Edit task"}
+                  <span className="flex items-center text-sm text-gray-600">
+                    <BsPencilSquare />
+                  </span>
                 </h2>
               ) : (
                 <form
