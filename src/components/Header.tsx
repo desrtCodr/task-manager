@@ -1,6 +1,7 @@
 import React from "react";
 import { useSession, signOut } from "next-auth/react";
 import { api } from "~/utils/api";
+import Image from "next/image";
 
 const Header = () => {
   const { data: sessionData } = useSession();
@@ -12,38 +13,45 @@ const Header = () => {
     },
   });
   return (
-    <header className="flex flex-col items-center justify-between gap-2 p-5 sm:flex-row">
-      <div className="flex flex-col gap-1">
-        <h1 className="flex items-center gap-3 text-3xl font-bold text-gray-900">
-          Task Manager
-          <span className="mt-1 text-lg font-medium text-gray-500">
+    <header className="flex items-center justify-between gap-2 p-3 xs:flex-col sm:flex-row">
+      <div className="flex w-full flex-col gap-1 px-2">
+        <div className="flex items-center gap-2 xs:max-sm:justify-between">
+          <h1 className="flex items-center gap-3 text-2xl font-bold text-gray-900">
+            Task Manager
+          </h1>
+          <p className="text-md mt-1 font-medium text-gray-500">
             -- Get Your Life Together --
-          </span>
-        </h1>
-        <form className="flex gap-2">
+          </p>
+        </div>
+        <form className="flex gap-2 xs:max-sm:justify-between">
           <input
             placeholder="Enter New Project"
-            className="border px-4 py-1"
+            className="flex border px-2 py-1"
             type="text"
             value={newProject}
             onChange={(e) => setNewProject(e.target.value)}
           />
           <button
-            className="rounded-lg border border-cyan-600 px-2 py-1 font-semibold text-gray-500 no-underline transition hover:bg-cyan-500/50"
+            className="flex w-32 rounded-lg border border-cyan-600 px-2 py-1 text-center font-semibold text-gray-500 no-underline transition hover:bg-cyan-500/50"
             onClick={() => createProject({ name: newProject })}
           >
             Add Project
           </button>
         </form>
       </div>
-      <div className="flex items-center justify-between gap-1 sm:flex-col">
-        <p className="text-md text-gray-500">
-          {sessionData && (
-            <span>
-              Hello {sessionData.user?.name || sessionData.user.email}
-            </span>
-          )}
-        </p>
+      <div className="flex items-center justify-between gap-1 px-2 xs:max-sm:w-full sm:flex-col">
+        {sessionData && (
+          <div className="text-md flex items-center gap-2 text-gray-500">
+            <Image
+              className="rounded-full"
+              src={sessionData.user?.image || "/favicon.png"}
+              width={25}
+              height={25}
+              alt="Profile Pic"
+            />
+            <p>{sessionData.user?.name || sessionData.user.email}</p>
+          </div>
+        )}
         <button
           className="float-right rounded-lg  border border-cyan-600 px-3 py-1 font-semibold text-gray-500 no-underline transition hover:bg-cyan-500/50"
           onClick={() => void signOut()}

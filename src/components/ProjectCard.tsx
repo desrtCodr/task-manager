@@ -72,7 +72,7 @@ const ProjectCard = (props: ProjectCardProps) => {
   return (
     <div
       key={project.id}
-      className={`rounded-lg ${
+      className={`rounded-lg lg:max-w-xs ${
         project.category === "Short-Term"
           ? "bg-white/90 text-gray-500"
           : "bg-cyan-500/50 text-gray-900"

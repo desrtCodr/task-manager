@@ -22,7 +22,7 @@ const TaskManager: NextPage = () => {
     <>
       <div className="min-h-screen">
         <Header />
-        <main className="flex">
+        <main className="flex flex-col md:flex-row">
           <section className="m-1 h-screen bg-gray-400 p-2 ">
             <div className="flex gap-2 p-1">
               <h2 className="p-1 text-xl">Projects</h2>
