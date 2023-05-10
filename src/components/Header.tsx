@@ -13,13 +13,13 @@ const Header = () => {
     },
   });
   return (
-    <header className="flex items-center justify-between gap-2 p-3 xs:flex-col sm:flex-row">
+    <header className="flex items-center justify-between gap-1 p-3 xs:flex-col sm:flex-row">
       <div className="flex justify-between gap-1 px-2 xs:max-md:w-full md:flex-col">
         <Image
-          className="flex items-center justify-center p-2 md:hidden"
+          className="flex items-center justify-center py-1 md:hidden"
           src="/favicon.ico"
-          width={70}
-          height={40}
+          width={60}
+          height={60}
           alt="Logo"
         />
         <div className="flex ">

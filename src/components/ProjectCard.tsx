@@ -78,7 +78,7 @@ const ProjectCard = (props: ProjectCardProps) => {
           : "bg-cyan-500/50 text-gray-900"
       }`}
     >
-      <div className="px-4 py-5 sm:p-6">
+      <div className="px-4 py-5 ">
         {!editCategory ? (
           <p className="text-sm" onClick={() => setEditCategory(true)}>
             Category: {project.category}

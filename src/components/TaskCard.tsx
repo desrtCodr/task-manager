@@ -111,9 +111,9 @@ const TasksCard = (props: TasksCardProps) => {
         ))}
       </ul>
       <hr className="my-5" />
-      <div className="flex gap-2">
+      <div className="flex justify-between gap-2">
         <input
-          className="col-span-3 border bg-slate-200 px-2 py-2"
+          className="flex border bg-slate-200 px-2 py-2"
           type="text"
           placeholder="Enter New Task"
           value={newTask}
@@ -122,7 +122,7 @@ const TasksCard = (props: TasksCardProps) => {
         />
 
         <button
-          className={`col-span-2 col-end-6 w-[80px] rounded-lg border border-cyan-600 p-1 font-semibold ${
+          className={`min-w-max rounded-lg border border-cyan-600 p-1 font-semibold ${
             category === "Short-Term"
               ? "text-gray-500"
               : "bg-slate-200 text-gray-900 hover:bg-gray-400"
