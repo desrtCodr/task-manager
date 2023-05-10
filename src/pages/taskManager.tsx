@@ -25,7 +25,7 @@ const TaskManager: NextPage = () => {
         <main className="flex flex-col md:flex-row">
           <section className="m-1 h-screen bg-gray-400 p-2 ">
             <div className="flex gap-2 p-1">
-              <h2 className="p-1 text-xl">Projects</h2>
+              <h2 className="p-1 text-xl font-bold text-slate-800">Projects</h2>
             </div>
             <div className="flex flex-wrap gap-4">
               {currentProjects?.map((project) => (
@@ -33,8 +33,10 @@ const TaskManager: NextPage = () => {
               ))}
             </div>
           </section>
-          <section className="m-1 h-screen bg-gray-600 p-2">
-            <h2 className="p-2 text-xl">Long-Term Projects</h2>
+          <section className="m-1 h-screen bg-gray-700 p-2">
+            <h2 className="p-2 text-xl font-bold text-slate-200">
+              Long-Term Projects
+            </h2>
             <div className="flex gap-4">
               {futureProjects?.map((project) => (
                 <ProjectView key={project.id} project={project} />

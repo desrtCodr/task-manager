@@ -14,7 +14,7 @@ const Header = () => {
   });
   return (
     <header className="flex items-center justify-between gap-1 p-3 xs:flex-col sm:flex-row">
-      <div className="flex justify-between gap-1 px-2 xs:max-md:w-full md:flex-col">
+      <div className="flex justify-between gap-1 px-2 xs:max-md:w-full sm:justify-start md:flex-col">
         <Image
           className="flex items-center justify-center py-1 md:hidden"
           src="/favicon.ico"
@@ -24,8 +24,8 @@ const Header = () => {
         />
         <div className="flex ">
           <div>
-            <div className="flex items-center gap-2 xs:max-sm:justify-between">
-              <h1 className="flex items-center gap-3 text-2xl font-bold text-gray-900">
+            <div className="flex items-center gap-2 xs:justify-between">
+              <h1 className="flex items-center gap-3 text-2xl font-bold text-slate-800">
                 Task Manager
               </h1>
               <p className="text-md mt-1 font-medium text-gray-500">
