@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import ProjectView from "../components/ProjectCard";
 import { useSession } from "next-auth/react";
 import Loading from "~/components/Loading";
+import Link from "next/link";
 
 const TaskManager: NextPage = () => {
   useSession({ required: true });
@@ -20,12 +21,19 @@ const TaskManager: NextPage = () => {
 
   return (
     <>
-      <div className="min-h-screen">
+      <div className="">
         <Header />
-        <main className="flex flex-col md:flex-row">
-          <section className="m-1 h-screen bg-gray-400 p-2 ">
-            <div className="flex gap-2 p-1">
+        <main className="flex flex-col xs:h-fit md:h-screen md:flex-row">
+          <section className="m-1 bg-gray-400 p-2 xs:h-fit md:h-screen ">
+            <div className="flex justify-between">
               <h2 className="p-1 text-xl font-bold text-slate-800">Projects</h2>
+              <Link
+                href="/taskManager/#long-term"
+                scroll={false}
+                className="p-1 text-xl font-bold text-slate-800 md:hidden"
+              >
+                Long-Term Projects
+              </Link>
             </div>
             <div className="flex flex-wrap gap-4">
               {currentProjects?.map((project) => (
@@ -33,11 +41,14 @@ const TaskManager: NextPage = () => {
               ))}
             </div>
           </section>
-          <section className="m-1 h-screen bg-gray-700 p-2">
+          <section
+            id="long-term"
+            className="m-1 bg-gray-700 p-2 xs:h-fit md:h-screen"
+          >
             <h2 className="p-2 text-xl font-bold text-slate-200">
               Long-Term Projects
             </h2>
-            <div className="flex gap-4">
+            <div className="flex flex-wrap gap-4">
               {futureProjects?.map((project) => (
                 <ProjectView key={project.id} project={project} />
               ))}

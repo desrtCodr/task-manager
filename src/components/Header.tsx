@@ -42,7 +42,7 @@ const Header = () => {
                 onChange={(e) => setNewProject(e.target.value)}
               />
               <button
-                className="flex w-32 rounded-lg border border-cyan-600 px-2 py-1 text-center font-semibold text-gray-500 no-underline transition hover:bg-cyan-500/50"
+                className="flex w-fit rounded-lg border border-cyan-600 px-2 py-1 text-center font-semibold text-gray-500 no-underline transition hover:bg-cyan-500/50"
                 onClick={() => createProject({ name: newProject })}
               >
                 Add Project
@@ -60,7 +60,7 @@ const Header = () => {
           alt="Logo"
         />
       </div>
-      <div className="flex items-center justify-between gap-1 px-2 xs:max-sm:w-full sm:flex-col">
+      <div className="flex items-center justify-between gap-1 px-2 xs:max-sm:w-full sm:min-w-fit sm:flex-col">
         {sessionData && (
           <div className="text-md flex items-center gap-2 text-gray-500">
             <Image
@@ -70,11 +70,13 @@ const Header = () => {
               height={25}
               alt="Profile Pic"
             />
-            <p>{sessionData.user?.name || sessionData.user.email}</p>
+            <p className="">
+              {sessionData.user?.name || sessionData.user.email}
+            </p>
           </div>
         )}
         <button
-          className="float-right rounded-lg  border border-cyan-600 px-3 py-1 font-semibold text-gray-500 no-underline transition hover:bg-cyan-500/50"
+          className="rounded-lg  border border-cyan-600 px-3 py-1 font-semibold text-gray-500 no-underline transition hover:bg-cyan-500/50"
           onClick={() => void signOut()}
         >
           Sign out
